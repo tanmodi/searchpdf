@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import link from "../link.js";
 
 const Page = () => {
     const [username, setUsername] = useState("");
@@ -81,13 +82,10 @@ const Page = () => {
                 formData.append("username", username);
                 formData.append("audio", blob, "audio.webm");
 
-                const response = await fetch(
-                    "http://localhost:3500/api/speak",
-                    {
-                        method: "POST",
-                        body: formData,
-                    }
-                );
+                const response = await fetch(link + "/api/speak", {
+                    method: "POST",
+                    body: formData,
+                });
 
                 if (!response.ok) {
                     throw new Error("Failed to upload audio");
